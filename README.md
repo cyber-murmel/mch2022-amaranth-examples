@@ -1,4 +1,4 @@
-# iCEBreaker amaranth examples
+# MCH2022 badge amaranth examples
 
 This repository is based on [icebreaker-amaranth-examples](https://github.com/icebreaker-fpga/icebreaker-amaranth-examples) and contains examples for the [amaranth HDL](https://github.com/amaranth-lang/amaranth)
 Python library for register transfer level modeling of synchronous logic. Ordinary Python code is
