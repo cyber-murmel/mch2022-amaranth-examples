@@ -1,6 +1,6 @@
 # iCEBreaker amaranth examples
 
-This repository contains examples for the [amaranth HDL](https://github.com/amaranth-lang/amaranth)
+This repository is based on [icebreaker-amaranth-examples](https://github.com/icebreaker-fpga/icebreaker-amaranth-examples) and contains examples for the [amaranth HDL](https://github.com/amaranth-lang/amaranth)
 Python library for register transfer level modeling of synchronous logic. Ordinary Python code is
 used to construct a netlist of a digital circuit, which can be simulated, directly synthesized via
 Yosys, or converted to human-readable Verilog code for use with industry-standard toolchains.
@@ -12,6 +12,7 @@ Then clone this repository recursively.
 
 ```shell
 git clone --recurse-submodules https://github.com/cyber-murmel/mch2022-amaranth-examples.git
+cd mch2022-amaranth-examples
 ```
 
 ### Toolchain
@@ -53,7 +54,7 @@ git submodule update --init --recursive
 
 You must set the `WEBUSB_FPGA` environment variable to the location of the `webusb_fpga.py` script. This must also be done every time you open a new terminal window.
 ```shell
-export WEBUSB_FPGA=./mch2022-tools/webusb_fpga.py
+export WEBUSB_FPGA=$PWD/mch2022-tools/webusb_fpga.py
 ```
 
 ### Testing and Usage
@@ -93,7 +94,7 @@ python3 -m pip install --upgrade pip \
   -r requirements.txt
 
 # set environment variable
-export WEBUSB_FPGA=./mch2022-tools/webusb_fpga.py
+export WEBUSB_FPGA=$PWD/mch2022-tools/webusb_fpga.py
 
 # test badge
 python -m amaranth_boards.mch2022
