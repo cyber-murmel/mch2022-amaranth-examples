@@ -15,6 +15,9 @@ git clone --recurse-submodules https://github.com/cyber-murmel/mch2022-amaranth-
 cd mch2022-amaranth-examples
 ```
 
+If you just want to let the rubber hit the road, there is a [TL;DR](README.md#tldr) at the
+bottom of this readme.
+
 ### Toolchain
 To synthesize and upload bitstrams you need to install
 [`yosys`](https://yosyshq.net/yosys/download.html),
@@ -58,20 +61,87 @@ export WEBUSB_FPGA=$PWD/mch2022-tools/webusb_fpga.py
 ```
 
 ### Testing and Usage
-After that all you need to do is connect your MCH2022 badge to the computer and run the python script
-in an example directory.
+After that all you need to do is connect your MCH2022 badge to the computer.
 
 To test the toolchain and hardware you can call a board package directly.
 ```shell
-python -m amaranth_boards.mch2022
+python3 -m amaranth_boards.mch2022
 ```
 This should make th RGB LED blink white.
 
 The scripts are by default set to synthesize and upload the bitstream to the MCH2022 badge board.
 
+## Repository Structure
+The project structure is currently subject to change.
+Most directories in [mch2022/](mch2022/) contain directories containing a Python file.
+These can simply be run like
+
+```shell
+python3 mch2022/pdm_fade_gamma/gamma_pdm.py
+```
+
+The new structure can be seen in the [blink](mch2022/blink/). This contains and `__init__.py`
+and `__main__.py` and is supposed to be run as a Python module.
+
+```shell
+python3 -m mch2022.blink
+```
+
+New projects are als supposed to provide a help text.
+
+```shell
+python3 -m mch2022.blink --help
+usage: __main__.py [-h] [-b BLINK_FREQ] {generate,simulate} ...
+
+positional arguments:
+  {generate,simulate}
+    generate            generate RTLIL, Verilog or CXXRTL from the design
+    simulate            simulate the design
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -b BLINK_FREQ, --blink-freq BLINK_FREQ
+                        blink frequency
+```
+
 ## Warning
 Amaranth is still a work in progress project. Expect examples to occasionally break until amaranth
 fully stabilizes.
+
+## Simulation
+To run a module virtually, call the module with the `simulate` command, and specify the
+number of clock cycles to run and the paths for the VCD and GTKW file. To view the waveforms install [`gtkwave`](http://gtkwave.sourceforge.net/).
+
+The following commands run create the blink module with a frequency of 1MHz, so that the
+waveform isn't too long, and then open the files with GTKWave.
+
+```shell
+python3 -m mch2022.blink \
+  --blink-freq 1000000 \
+  simulate \
+    --clocks 100 \
+    --vcd-file blink.vcd \
+    --gtkw-file blink.gtkw
+gtkwave --dump blink.vcd --save blink.gtkw
+```
+
+## Formal Verification
+To get a quick understanding what formal verification is and what it can do, I recommend
+watching [Matt Venn's](https://www.youtube.com/watch?v=_5R35QFsXM4) or [Robert Beruch's](https://www.youtube.com/watch?v=9e7F1XhjhKw) video (series) or reading the [Wikipedia entry](https://en.wikipedia.org/wiki/Formal_verification).
+
+
+### Toolchain
+If you want to get started with formal verification, you also need to
+install [`symbiyosys` and `yices`](https://symbiyosys.readthedocs.io/en/latest/install.html).
+These packages are alredy part of the [`shell.nix`](/README.md#nixos).
+
+Currently the only example with formal verification is [mch2022/blink](/mch2022/blink/).
+Formal verification runs are implemented as Python [unit test cases](mch2022/blink/tests/test_blink.py).
+Start formal verification by calling the `unittest` module with the blink module as argument.
+
+```shell
+python -m unittest mch2022.blink
+```
 
 ## TL;DR
 MAKE BADGE BLINK NOW!!!11!!111!
