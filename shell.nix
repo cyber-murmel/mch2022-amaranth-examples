@@ -22,6 +22,7 @@ mkShell {
   buildInputs = [
     (python3.withPackages (ps: with ps;[
       pyusb
+      pyserial
       amaranth
       amaranth-boards-mch2022
     ]))
