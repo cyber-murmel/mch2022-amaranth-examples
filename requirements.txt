@@ -1,0 +1,5 @@
+amaranth==0.3
+Jinja2==2.11.3
+MarkupSafe==2.0.1
+pyusb==1.2.1
+pyvcd==0.2.4
