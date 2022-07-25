@@ -19,7 +19,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     plat = MCH2022BadgePlatform()
-    print(plat.default_clk_frequency)
     top = Top(plat.default_clk_frequency, 1 / args.blink_freq)
 
     if args.action:
