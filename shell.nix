@@ -17,6 +17,18 @@ let
     };
     pythonImportsCheck = [ "${amaranth-boards-mch2022.pname}" ];
   });
+  amaranth-soc = python3Packages.amaranth-boards.overrideAttrs (old: {
+    pname = "amaranth_soc";
+    version = "0";
+    realVersion = "0";
+    src = fetchFromGitHub {
+      owner = "amaranth-lang";
+      repo = "amaranth-soc";
+      rev = "217d4ea76ad3b3bbf146980d168bc7b3b9d95a18";
+      sha256 = "106r0gdd3mv21pq099x0ifgg9jw0rmnphhx4swksazgvcbrskj3l";
+    };
+    pythonImportsCheck = [ "${amaranth-soc.pname}" ];
+  });
 in
 mkShell {
   buildInputs = [
@@ -24,6 +36,7 @@ mkShell {
       pyusb
       pyserial
       amaranth
+      amaranth-soc
       amaranth-boards-mch2022
     ]))
     yosys
