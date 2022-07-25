@@ -1,4 +1,6 @@
 amaranth==0.3
+amaranth-soc==0
+git+https://github.com/amaranth-lang/amaranth-boards.git@fb430ff035cfb7c44af7f1e517e2bf032529577a
 Jinja2==2.11.3
 MarkupSafe==2.0.1
 pyserial==3.5

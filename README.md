@@ -30,20 +30,16 @@ If that's not the case, click the link to the respective package above.
 #### Python
 Install the necessary Python packages from the `reuqirements.txt`. I recommend using Python venv.
 
-Also install `amaranth-boards` from this [pull request](https://github.com/amaranth-lang/amaranth-boards/pull/203), since the MCH2022 badge is not yet part of the official
-repository yet.
-
 ```shell
 python3 -m venv .venv
 source .venv/bin/activate
 
-python3 -m pip install --upgrade pip \
-  git+https://github.com/amaranth-lang/amaranth-boards.git@fb430ff035cfb7c44af7f1e517e2bf032529577a \
-  -r requirements.txt
+python3 -m pip install --upgrade pip --requirement requirements.txt
 ```
 
-When you are done simply close the shell or run `deactivate` to exit the venv.
-You need to run `source .venv/bin/activate` from the root of this repository when you want to use this project in a new terminal window.
+When you are done with the project simply close the shell or run `deactivate` to exit the venv.
+You need to run `source .venv/bin/activate` from the root of this repository when you want to use
+this project in a new shell.
 
 #### Nix(OS)
 Users of Nix or NixOS can skip the toolchain instructions above and simply run `nix-shell` in the root of this directory to drop into a functional development environment.
@@ -159,9 +155,7 @@ cd mch2022-amaranth-examples
 # install required python packages
 python3 -m venv .venv
 source .venv/bin/activate
-python3 -m pip install --upgrade pip \
-  git+https://github.com/amaranth-lang/amaranth-boards.git@fb430ff035cfb7c44af7f1e517e2bf032529577a \
-  -r requirements.txt
+python3 -m pip install --upgrade pip --requirement requirements.txt
 
 # set environment variable
 export WEBUSB_FPGA=$PWD/mch2022-tools/webusb_fpga.py
