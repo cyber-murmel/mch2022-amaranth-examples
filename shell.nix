@@ -6,7 +6,7 @@
 with pkgs;
 let
   amaranth-boards-mch2022 = python3Packages.amaranth-boards.overrideAttrs (old: {
-    pname = "amaranth";
+    pname = "amaranth_boards";
     version = "0.1";
     realVersion = "0.1.dev210+g${lib.substring 0 7 amaranth-boards-mch2022.src.rev}";
     src = fetchFromGitHub {
